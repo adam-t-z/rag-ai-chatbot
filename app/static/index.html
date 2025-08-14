@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RAG AI Chat Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+               <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-robot"></i> RAG AI Assistant</h1>
+            <p>Ask me anything about your documents and get intelligent answers with sources</p>
+        </div>
+
+        <div class="chat-container">
+            <div class="input-section">
+                <div class="input-group">
+                    <i class="fas fa-question-circle input-icon"></i>
+                    <textarea 
+                        id="question" 
+                        class="question-input" 
+                        placeholder="Ask me anything about your documents... (e.g., 'What are the main topics covered?' or 'Can you explain the key concepts?')"
+                    ></textarea>
+                </div>
+                <button id="askBtn" class="ask-button">
+                    <i class="fas fa-paper-plane"></i>
+                    Ask Question
+                    <div class="loading-spinner" id="loadingSpinner"></div>
+                </button>
+            </div>
+
+            <div class="content-section">
+                <div class="section-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Answer
+                </div>
+                <div id="answer" class="answer-container">
+                    <div class="empty-state">
+                        <i class="fas fa-comments" style="font-size: 2rem; color: #dee2e6; margin-bottom: 1rem;"></i>
+                        <p>Ready to help! Ask me a question about your documents.</p>
+                    </div>
+                </div>
+
+                <div class="section-title">
+                    <i class="fas fa-book-open"></i>
+                    Sources & References
+                </div>
+                <div id="sources" class="sources-container">
+                    <div class="empty-state">
+                        <i class="fas fa-folder-open" style="font-size: 2rem; color: #dee2e6; margin-bottom: 1rem;"></i>
+                        <p>Sources will appear here after you ask a question.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+               <script src="/static/script.js"></script>
+</body>
+
+</html>
+
+
+
+
