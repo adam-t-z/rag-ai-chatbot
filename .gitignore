@@ -13,9 +13,7 @@ venv/
 .idea/
 
 # Data and cache
-chroma/
-data/**
-!data/.gitkeep
+# (Intentionally tracked so examples and vector DB can be committed)
 
 # OS
 Thumbs.db

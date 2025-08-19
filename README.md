@@ -1,6 +1,6 @@
-# RAG AI Chat Assistant v3
+# Chat With Your Books (Powered by RAG)
 
-A modern, intelligent chat interface that uses Retrieval-Augmented Generation (RAG) to provide accurate answers based on your document collection. Built with FastAPI backend and a beautiful, responsive web interface.
+A friendly, modern chat interface that uses Retrieval-Augmented Generation (RAG) to answer questions grounded in your documents. It ships with a clean FastAPI backend and a delightful, responsive web UI. Pour in knowledge, ask away, and watch the magic happen ✨
 
 ## 🚀 Features
 
@@ -15,7 +15,7 @@ A modern, intelligent chat interface that uses Retrieval-Augmented Generation (R
 ## 🏗️ Architecture
 
 ```
-rag_ai_chat_v3/
+project/
 ├── app/
 │   ├── __init__.py
 │   ├── config.py          # Paths and env loading
@@ -54,7 +54,7 @@ rag_ai_chat_v3/
 
 ## 📋 Prerequisites
 
-- Python 3.8 or higher
+- Python 3.10 or higher
 - pip (Python package installer)
 - Modern web browser (Chrome, Firefox, Safari, Edge)
 
@@ -63,7 +63,7 @@ rag_ai_chat_v3/
 ### 1. Clone the Repository
 ```bash
 git clone <repository-url>
-cd rag_ai_chat_v3
+cd <your-project-folder>
 ```
 
 ### 2. Create Virtual Environment
@@ -89,7 +89,7 @@ pip install -r requirements.txt
 
 ### 5. Initialize Database
 ```bash
-python create_database.py
+python scripts/create_database.py
 ```
 
 ### 6. Run the Application
@@ -102,9 +102,9 @@ The application will be available at `http://localhost:8000`
 ## 📚 Usage
 
 ### Adding Documents
-1. Place your documents in the `data/` folder
+1. Place your documents in the `data/` folder (subfolders are OK; files are discovered recursively)
 2. Supported formats: PDF, TXT, DOCX
-3. Run `python create_database.py` to process new documents
+3. Run `python scripts/create_database.py` to process new documents
 
 ### Using the Chat Interface
 1. Open your browser and navigate to the application
@@ -119,6 +119,19 @@ The application will be available at `http://localhost:8000`
 - "What are the main findings?"
 - "How does this relate to [specific topic]?"
 
+## 📖 Included Sample Dataset
+
+- The example vector database created here is built from Herman Melville's classic: **Moby Dick (The Whale)** — a book of more than 500 pages. It's perfect for stress‑testing long‑context retrieval and seeing RAG in action on rich, narrative text.
+
+You can swap in your own documents anytime by placing them in `data/` and re‑running the database script.
+
+## 🖼️ Screenshots
+
+Add your own screenshots to bring this to life. Place images in `docs/images/` and update the paths as needed.
+
+![Main User Interface](docs/images/main-ui.png)
+![Answer with Sources](docs/images/answer-sources.png)
+
 ## 🔧 Configuration
 
 ### Environment Variables
@@ -130,9 +143,14 @@ OPENROUTER_API_KEY=your_key_here
 ### Customizing the Model
 Edit `query_engine.py` to modify:
 - Embedding model selection
-- Chunk size and overlap
 - Similarity search parameters
 - Response generation settings
+
+### Customizing Ingestion (Chunking & Formats)
+Edit `scripts/create_database.py` to modify:
+- Chunk size and overlap
+- Supported file formats (PDF, TXT, DOCX)
+- Input directories under `data/`
 
 ## 📱 Interface Features
 
@@ -174,7 +192,7 @@ Edit `query_engine.py` to modify:
 **Database Connection Error**
 ```bash
 # Ensure ChromaDB is properly initialized
-python create_database.py
+python scripts/create_database.py
 ```
 
 **Import Errors**
@@ -185,12 +203,16 @@ pip install -r requirements.txt
 
 **Port Already in Use**
 ```bash
-# Change port in main.py or kill existing process
-lsof -ti:5000 | xargs kill -9
+# Change port in app/main.py or free the port
+# macOS/Linux example for port 8000:
+lsof -ti:8000 | xargs kill -9
+# Windows example:
+netstat -ano | findstr :8000
+taskkill /PID <PID_FROM_ABOVE> /F
 ```
 
 ### Performance Issues
-- Reduce chunk size in `query_engine.py`
+- Reduce chunk size in `scripts/create_database.py`
 - Limit document collection size
 - Use smaller embedding models
 
@@ -229,7 +251,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - **LangChain**: RAG framework
 - **ChromaDB**: Vector database
 - **Sentence Transformers**: Text embeddings
-- **Flask**: Web framework
+- **FastAPI**: Web framework
 - **Font Awesome**: Icons
 - **Google Fonts**: Typography
 
